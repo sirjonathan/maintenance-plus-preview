@@ -28,7 +28,10 @@ function jw_maintenance_mode() {
     //if ( !current_user_can( 'edit_themes' ) || !is_user_logged_in() ) {
     $options = get_option( 'maint_display_text' );
     $message = $options['maint_text'];
-    $title = $options['maint_title'];
+    $title = $options['maint_title'] ;
+    if (preg_match('/<h2>(.*?)<\/h2>/s', $message, $matches)){
+        $title = $title . ' - ' . $matches[1];
+    }
     if( !empty( $_GET ) ) {
                                         
         // First, grab the current string and parse it out.

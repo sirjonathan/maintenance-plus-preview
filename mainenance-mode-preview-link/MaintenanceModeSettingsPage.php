@@ -23,7 +23,7 @@ class MaintenanceModeSettingsPage
         // This page will be under "Settings"
         add_options_page(
             'Maintenace Mode Settings Admin', 
-            'Maint Mode Settings', 
+            'Maintenance Mode', 
             'manage_options', 
             'maintenance_mode-setting-admin', 
             array( $this, 'create_admin_page' )
@@ -98,9 +98,9 @@ class MaintenanceModeSettingsPage
     public function sanitize( $input )
     {
         if( !empty( $input['maint_text'] ) )
-            $input['maint_text'] = sanitize_text_field( $input['maint_text'] );
+            $input['maint_text'] = wp_kses_post( $input['maint_text'] );
        if( !empty( $input['maint_title'] ) )
-            $input['maint_title'] = sanitize_text_field( $input['maint_title'] );
+            $input['maint_title'] = wp_kses_post( $input['maint_title'] );
 
         return $input;
     }
