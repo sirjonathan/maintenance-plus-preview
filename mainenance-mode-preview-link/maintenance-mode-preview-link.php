@@ -29,8 +29,8 @@ function jw_maintenance_mode() {
     $options = get_option( 'maint_display_text' );
     $message = $options['maint_text'];
     $title = $options['maint_title'] ;
-    if (preg_match('/<h2>(.*?)<\/h2>/s', $message, $matches)){
-        $title = $title . ' - ' . $matches[1];
+    if (!preg_match('/<h2>(.*?)<\/h2>/s', $message, $matches)){
+        $message = '<h2>' . $title . '<h2>' . $message;
     }
     if( !empty( $_GET ) ) {
                                         
